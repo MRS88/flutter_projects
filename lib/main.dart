@@ -3,7 +3,10 @@ import 'package:url_launcher/url_launcher.dart';
 
 class MyBody extends StatelessWidget{
   Widget build(BuildContext context) {
-    var textButton = new TextButton(style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.red[100]),),
+    return new Center(child: new Column(
+      children: [
+        new Text('Hello, guys!'), 
+        new TextButton(style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.red[100])),
         onPressed: () async {
           const url = 'https://flutter.su/';
           if (await canLaunch(url)) {
@@ -11,13 +14,11 @@ class MyBody extends StatelessWidget{
           } else {
             throw 'Could not launch $url';
           }
-        },
-        child: Text('open link'),);
-    return new Center(child: new Column(
-      children: [
-        new Text('Hello, guys!'), textButton
-      ]));
+        }, child: buildText()
+      )]));
   }
+
+  Text buildText() => Text('open url');
 }
 
 void main() {
@@ -27,7 +28,7 @@ void main() {
       home: new Scaffold(
         appBar: new AppBar(title: new Text('Flutter.su')),
         body: new MyBody(),
-        backgroundColor: Colors.grey
+        backgroundColor: Colors.green[50]
           )
         )
       );
